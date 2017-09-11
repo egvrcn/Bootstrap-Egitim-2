@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="text-primary">BOOTSTRAP EĞİTİM!</h1>
+        </div>
+
+        <!-- Trigger the modal with a button -->
+        <div class="form-group">
+            <label for="txtBaslik">Modal Başlığı</label>
+            <input type="text" id="txtBaslik" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="txtIcerik">Modal İçeriği</label>
+            <input type="text" id="txtIcerik" class="form-control">
+        </div>
+
+
+        <button type="button" class="btn btn-info btn-lg" onclick="modalAc()">Modal Aç</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="modalBaslik"></h4>
+                    </div>
+                    <div class="modal-body" id="modalIcerik">
+
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-success pull-left" onclick="kaydet()">Kaydet</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function modalAc() {
+            var icerikHtml = "<p>"+$('#txtIcerik').val()+"</p>" +
+            " <input type='text' />";
+
+            $('#modalBaslik').text($('#txtBaslik').val());
+            $('#modalIcerik').html(icerikHtml);
+            $('#myModal').modal();
+        }
+
+        function kaydet(){
+            alert("Kayıt Başarılı!");
+            $('#myModal').modal('hide');
+        }
+    </script>
+</body>
+
+</html>

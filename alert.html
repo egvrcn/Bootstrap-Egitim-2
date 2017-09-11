@@ -1,0 +1,109 @@
+"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>ALERTS EĞİTİM <span class="badge">4</span></a></h1>
+        </div>
+        <ul class="breadcrumb">
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#">Eğitim</a></li>
+                <li><a href="#">Bootstrap</a></li>
+                <li class="active">Alerts</li> 
+              </ul>
+              
+              <div class="row">
+        <div class="form-group">
+            <label for="txtBaslik">Başlık:</label>
+            <input type="text" id="txtBaslik" placeholder="Başlık Giriniz" class="form-control input-lg" />
+            <span class="help-block">En az 10 karakter olmalı!</span>
+        </div>
+
+        <div class="form-group">
+        <label for="txtIcerik">İçerik:</label>
+        <input type="text" id="txtIcerik" class="form-control input-lg" />
+        </div>
+
+        <div class="form-group">
+        <label for="yazi">Yazarak Sonuca Ulaş!:</label>
+        <input type="text" id="yazi" class="form-control input-lg" />
+        </div>
+    </div>
+        <hr>
+        <button class="btn btn-primary btn-sm disabled">Kullanılabilecek İfadeler</button>
+      
+        <div class="btn-group">
+                <button type="button" class="btn btn-primary" onclick="Yaz(this)">Basarili</button>
+                <button type="button" class="btn btn-danger" onclick="Yaz(this)">Hatali</button>
+                <button type="button" class="btn btn-warning" onclick="Yaz(this)">Dikkat</button>
+                <button type="button" class="btn btn-info" onclick="Yaz(this)">Bilgi</button>
+         </div>
+
+        <div class="row">
+            <div class="col-md-12" id="sonuc">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#yazi').change(function () {
+            calis();
+        });
+
+        function calis(){
+            var baslik = $('#txtBaslik').val();
+            var icerik = $('#txtIcerik').val();
+
+            if(baslik=="" || icerik==""){
+                return;
+            }
+
+            //this ifadesi olayı yazılan elementi bize verir. $('#yazi')
+            switch ($('#yazi').val()) {
+                case "Basarili":
+                    var alertHtml = alertYapici("success", baslik, icerik);
+                    break;
+                case "Dikkat":
+                    var alertHtml = alertYapici("warning", baslik, icerik);
+                    break;
+                case "Hatali":
+                    var alertHtml = alertYapici("danger", baslik, icerik);
+                    break;
+                case "Dikkat":
+                    var alertHtml = alertYapici("info", baslik, icerik);
+                    break;
+                default:
+                    break;
+            }
+
+            $('#sonuc').html(alertHtml);
+        }
+
+        function alertYapici(classAdi, baslik, icerik) {
+            return "<div class=\"alert alert-" + classAdi + " fade in\">" +
+                "<strong>" + baslik + "</strong> " + icerik +
+                "</div>";
+        }
+
+        function Yaz(btn){
+            $('#yazi').val(btn.innerText);      
+            calis();      
+        }
+    </script>
+
+</body>
+
+</html>
